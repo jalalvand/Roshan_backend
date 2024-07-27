@@ -5,7 +5,7 @@ import scrapy
 class HackerNewsSpider(scrapy.Spider):
     name = "hacker_news"
     start_urls = [
-        "https://news.ycombinator.com/"
+        "https://www.zoomit.ir/archive/?sort=Newest&publishPeriod=All&readingTimeRange=All&pageNumber=1"
     ]
     def parse(self, response):
         for article in response.css("tr.athing"):

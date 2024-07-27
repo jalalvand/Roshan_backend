@@ -87,7 +87,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# if 'test' in sys.argv:
+#    CACHE_MIDDLEWARE_SECONDS = 0
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

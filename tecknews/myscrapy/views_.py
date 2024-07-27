@@ -6,24 +6,21 @@ from django.http import HttpResponse
 from django.core.serializers import serialize
 import re
 from .models import Article
-# from selenium import webdriver
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
-from requests_html import HTMLSession
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 def scrape_website(url):
     
+    driver = webdriver.Chrome()
+    driver.get(url)
+    element = WebDriverWait(driver,100).until(EC.url_contains(url))
     
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     
-    session = HTMLSession()
-    r = session.get(url)
-    print(r.status_code)
-    r.html.arender(sleep=30)
-    text = r.html.html
-    soup = BeautifulSoup(text,"html.parser")
-    
-    
+    page_source = driver.page_source
+    soup = BeautifulSoup(page_source, "html.parser")
     atags = soup.find_all("a",class_=lambda value: value and ("BrowseArticleListItemDesktop" in value))
     for atag in atags:
         itsurl = atag.get('href')
