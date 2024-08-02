@@ -1,0 +1,50 @@
+# Python cache files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Django specific
+*.sqlite3
+*.log
+db.sqlite3
+
+# Virtual environment
+venv/
+env/
+*.egg-info/
+*.eggs/
+pip-wheel-metadata/
+__pypackages__/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Local configuration files
+*.env
+.env.local
+
+# Testing files and directories
+coverage/
+nosetests.xml
+*.cover
+*.log
+*.tmp
+
+# Build directories
+build/
+dist/
+*.egg
+*.egg-info/
+
+# IDE and editor configurations
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# Docker-related files
+docker-compose.override.yml
+Dockerfile.dev
