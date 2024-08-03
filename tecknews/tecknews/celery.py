@@ -20,6 +20,7 @@
 import os
 from celery import Celery
 from time import sleep
+from celery.schedules import crontab
 
 
 # from .tasks import simple_task_1
@@ -34,11 +35,14 @@ app.autodiscover_tasks()
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs) -> None:
     # Example of periodic task (will be executed every 30 seconds)
-    sender.add_periodic_task(300, periodic_task.s(), name='Periodic task example')
+    sender.add_periodic_task(
+                        crontab(minute=0, hour=0)
+                        , periodic_task.s(),
+                        name='Periodic task example')
     
 
 
-@app.task(name="PeriodicTask (every 30 seconds)")
+@app.task(name="PeriodicTask (every day midnight)")
 def periodic_task() -> None:
     from myscrapy.views import peridic_scrapy
     # simple_task_1.delay()
